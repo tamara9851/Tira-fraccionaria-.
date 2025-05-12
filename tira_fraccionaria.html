@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Tira Fraccionaria</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 30px;
+    }
+    .tira {
+      display: flex;
+      justify-content: center;
+      margin: 20px auto;
+    }
+    .cuadro {
+      width: 50px;
+      height: 50px;
+      border: 2px solid #333;
+      margin: 0 5px;
+      cursor: pointer;
+      background-color: white;
+    }
+    .cuadro.coloreado {
+      background-color: lightblue;
+    }
+    #fraccion {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    #verificar {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+    #mensaje {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="fraccion">Colorea: <strong>¾</strong></div>
+
+  <div class="tira" id="tira"></div>
+
+  <button id="verificar">Verificar</button>
+  <div id="mensaje"></div>
+
+  <script>
+    const numerador = 3;
+    const denominador = 4;
+
+    const tira = document.getElementById('tira');
+    const mensaje = document.getElementById('mensaje');
+
+    // Crear los cuadros
+    for (let i = 0; i < denominador; i++) {
+      const cuadro = document.createElement('div');
+      cuadro.classList.add('cuadro');
+      cuadro.addEventListener('click', () => {
+        cuadro.classList.toggle('coloreado');
+      });
+      tira.appendChild(cuadro);
+    }
+
+    // Verificar la respuesta
+    document.getElementById('verificar').addEventListener('click', () => {
+      const coloreados = document.querySelectorAll('.cuadro.coloreado').length;
+      if (coloreados === numerador) {
+        mensaje.textContent = '¡Correcto!';
+        mensaje.style.color = 'green';
+      } else {
+        mensaje.textContent = 'Intenta de nuevo.';
+        mensaje.style.color = 'red';
+      }
+    });
+  </script>
+
+</body>
+</html>
